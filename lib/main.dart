@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorial_app/pages/welcome/bloc/welcome_blocs.dart';
 
 import 'pages/welcome/welcome.dart';
 
@@ -12,13 +14,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(builder: (contxt,child)=> MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Welcome(),
-    ));
+    return BlocProvider(
+        create: (context) => WelcomeBloc(),
+        child: ScreenUtilInit(
+            builder: (contxt, child) => MaterialApp(
+                  title: 'Flutter Demo',
+                  theme: ThemeData(
+                    primarySwatch: Colors.blue,
+                  ),
+                  home: const Welcome(),
+                )));
   }
 }
-
