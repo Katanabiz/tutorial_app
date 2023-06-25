@@ -15,51 +15,53 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Scaffold(
-        body: BlocBuilder<WelcomeBloc,WelcomeState>(builder: (context,state){
-          return  Container(
+      child: Scaffold(body:
+          BlocBuilder<WelcomeBloc, WelcomeState>(builder: (context, state) {
+        return Container(
           margin: EdgeInsets.only(top: 34.h),
           width: 375.w,
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
               PageView(
-                onPageChanged:(index){
-                  state.page = index;
-                  BlocProvider.of<WelcomeBloc>(context).add(WelcomeEvent());
-                  print("index value is ${index}");
-                },
-                children: [
-                _welcomePage(
-                    1,
-                    context,
-                    "Next",
-                    "First See Learning",
-                    "Forget about a for of paper all knowlwdge in one learning",
-                    "image path"),
-                _welcomePage(
-                    2,
-                    context,
-                    "Next",
-                    "Connect with Everyone",
-                    "Always keep in touch with your tutor & friend.let's get connected!",
-                    "image path"),
-                _welcomePage(
-                    3,
-                    context,
-                    "Get Started",
-                    "Always Fascinated Learning",
-                    "Anywhere,anytime.The time is at your discretion so syudy whenever you want.",
-                    "image path"),
-              ]),
+                  controller: pageController,
+                  onPageChanged: (index) {
+                    state.page = index;
+                    BlocProvider.of<WelcomeBloc>(context).add(WelcomeEvent());
+                    print("index value is ${index}");
+                  },
+                  children: [
+                    _welcomePage(
+                        1,
+                        context,
+                        "Next",
+                        "First See Learning",
+                        "Forget about a for of paper all knowlwdge in one learning",
+                        "assets/images/reading.png"),
+                    _welcomePage(
+                        2,
+                        context,
+                        "Next",
+                        "Connect with Everyone",
+                        "Always keep in touch with your tutor & friend.let's get connected!",
+                        "assets/images/boy.png"),
+                    _welcomePage(
+                        3,
+                        context,
+                        "Get Started",
+                        "Always Fascinated Learning",
+                        "Anywhere,anytime.The time is at your discretion so syudy whenever you want.",
+                        "assets/images/man.png"),
+                  ]),
               Positioned(
                   bottom: 100.h,
                   child: DotsIndicator(
-                    position: state.page,
+                      position: state.page,
                       dotsCount: 3,
                       mainAxisAlignment: MainAxisAlignment.center,
                       decorator: DotsDecorator(
@@ -72,8 +74,7 @@ class _WelcomeState extends State<Welcome> {
             ],
           ),
         );
-        })
-      ),
+      })),
     );
   }
 
@@ -85,7 +86,7 @@ class _WelcomeState extends State<Welcome> {
       SizedBox(
         width: 345.w,
         height: 345.w,
-        child: Text(imagePath),
+        child: Image.asset(imagePath, fit: BoxFit.cover),
       ),
       Container(
         child: Text(title,
@@ -103,27 +104,38 @@ class _WelcomeState extends State<Welcome> {
                 fontSize: 14.sp,
                 fontWeight: FontWeight.normal)),
       ),
-      Container(
-          margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
-          width: 325.w,
-          height: 40.h,
-          decoration: BoxDecoration(
-              color: Colors.blue,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 1,
-                    blurRadius: 2,
-                    offset: Offset(0, 1))
-              ],
-              borderRadius: BorderRadius.all(Radius.circular(15.w))),
-          child: Center(
-            child: Text(buttonName,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.normal)),
-          )),
+      GestureDetector(
+        onTap: () {
+          if (index < 3) {
+            pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeIn);
+
+                // fall back to this condition
+          } else {}
+        },
+        child: Container(
+            margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
+            width: 325.w,
+            height: 40.h,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 1))
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(15.w))),
+            child: Center(
+              child: Text(buttonName,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.normal)),
+            )),
+      ),
     ]);
   }
 }
