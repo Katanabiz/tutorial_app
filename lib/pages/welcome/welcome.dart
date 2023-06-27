@@ -112,7 +112,11 @@ class _WelcomeState extends State<Welcome> {
                 curve: Curves.easeIn);
 
                 // fall back to this condition
-          } else {}
+          } else {
+            // forget the earlier routes we dont't need of them.
+           // Navigator.of(contect).push(MaterialPageRoute(builder: (contect) => MyHomepage()));
+           Navigator.of(contect).pushNamedAndRemoveUntil("signInView", (route) => false);
+          }
         },
         child: Container(
             margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
