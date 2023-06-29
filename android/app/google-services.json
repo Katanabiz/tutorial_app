@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318048727446",
+    "project_id": "totorial-app",
+    "storage_bucket": "totorial-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318048727446:android:8551da13c1c1f2d48a2db7",
+        "android_client_info": {
+          "package_name": "com.example.tutorial_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318048727446-dkrkvd886be6t5b24hi8ff0vmi7c1htt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_sgEp0GshfHaVnBIjPuRsl_Sl1-kjY8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318048727446-dkrkvd886be6t5b24hi8ff0vmi7c1htt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

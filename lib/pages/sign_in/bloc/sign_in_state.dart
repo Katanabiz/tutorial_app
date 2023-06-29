@@ -1,6 +1,13 @@
 part of 'sign_in_bloc.dart';
 
 @immutable
-abstract class SignInState {}
+ class SignInState {
+  final String email;
+  final String password;
 
-class SignInInitial extends SignInState {}
+  const SignInState({this.email = "", this.password = ""});
+  SignInState copyWith({String? eamil, String? password}) {
+    return SignInState(
+        email: eamil ?? email, password: password ?? this.password);
+  }
+}

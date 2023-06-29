@@ -2,6 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tutorial_app/common/values/colors.dart';
+import 'package:tutorial_app/cubit.dart';
 import 'package:tutorial_app/pages/welcome/bloc/welcome_blocs.dart';
 import 'package:tutorial_app/pages/welcome/bloc/welcome_state.dart';
 
@@ -28,6 +30,20 @@ class _WelcomeState extends State<Welcome> {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
+              // BlocBuilder<ThemeCubit, bool>(builder: (context, state) {
+              //   return Container(
+              //     width: 40.w,
+              //     height: 20.h,
+              //     child: SwitchListTile(
+              //       value: state,
+              //       onChanged: (value) {
+              //         BlocProvider.of<ThemeCubit>(context)
+              //             .toggleTheme(value: value);
+              //       },
+              //       title: const Text("Toggle theme"),
+              //     ),
+              //   );
+              // }),
               PageView(
                   controller: pageController,
                   onPageChanged: (index) {
@@ -65,8 +81,8 @@ class _WelcomeState extends State<Welcome> {
                       dotsCount: 3,
                       mainAxisAlignment: MainAxisAlignment.center,
                       decorator: DotsDecorator(
-                          color: Colors.grey,
-                          activeColor: Colors.blue,
+                          color: AppColors.primaryThrirdElementText,
+                          activeColor: AppColors.primaryElement,
                           size: const Size.square(8.0),
                           activeSize: const Size(18.0, 8.0),
                           activeShape: RoundedRectangleBorder(
@@ -111,11 +127,12 @@ class _WelcomeState extends State<Welcome> {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn);
 
-                // fall back to this condition
+            // fall back to this condition
           } else {
             // forget the earlier routes we dont't need of them.
-           // Navigator.of(contect).push(MaterialPageRoute(builder: (contect) => MyHomepage()));
-           Navigator.of(contect).pushNamedAndRemoveUntil("signInView", (route) => false);
+            // Navigator.of(contect).push(MaterialPageRoute(builder: (contect) => MyHomepage()));
+            Navigator.of(contect)
+                .pushNamedAndRemoveUntil("signInView", (route) => false);
           }
         },
         child: Container(
@@ -123,7 +140,7 @@ class _WelcomeState extends State<Welcome> {
             width: 325.w,
             height: 40.h,
             decoration: BoxDecoration(
-                color: Colors.blue,
+                color: AppColors.primaryElement,
                 boxShadow: [
                   BoxShadow(
                       color: Colors.grey.withOpacity(0.1),
