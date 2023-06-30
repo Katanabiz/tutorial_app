@@ -15,7 +15,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // HydratedBloc.storage = await HydratedStorage.build(
   //     storageDirectory: await getApplicationDocumentsDirectory());
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+      apiKey: "XXX",
+      appId: "XXX",
+      messagingSenderId: "XXX",
+      projectId: "XXX",
+    ),
+  );
   runApp(const MyApp());
 }
 
